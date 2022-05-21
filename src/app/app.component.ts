@@ -11,6 +11,14 @@ import { UserService } from './services/user.service';
 export class AppComponent {
   title = 'alaraby-angular';
 
+  isAdmin() {
+    const user: string = localStorage.getItem('auth') || '';
+    if (user) {
+      return JSON.parse(user).roleId === '62868f37fac1ca1ac0b61d7a';
+    }
+    return false;
+  }
+
   auth: boolean = !!localStorage.getItem('auth') || false;
 
   email = new FormControl('');
@@ -23,7 +31,13 @@ export class AppComponent {
     roleId: this.roleId,
   });
 
-  constructor(public modal: ModalService, private userSrv: UserService) {}
+  constructor(public modal: ModalService, private userSrv: UserService) {
+    console.log(this.isAdmin());
+  }
+
+  ngOnInit() {
+    console.log(this.isAdmin());
+  }
 
   openModal(e: Event) {
     e.preventDefault();
