@@ -68,6 +68,7 @@ export class QuestionModalComponent implements OnInit, OnDestroy {
                   .subscribe({
                     next: () => {
                       alert('added successfully');
+                      this.modal.toggle('question');
                     },
                   });
               },
