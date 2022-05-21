@@ -1,0 +1,16 @@
+<div
+  class="modal fade"
+  [ngClass]="{ show: modal.isOpen(modalID) }"
+  (click)="close()"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content shadow-lg" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <button type="button" (click)="close()" class="btn-close"></button>
+      </div>
+      <div class="modal-body">
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+</div>

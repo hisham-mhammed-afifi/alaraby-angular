@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiRoot: 'https://alaraby-nodejs.herokuapp.com/api/',
+  apiRoot: 'http://localhost:5000/api/',
 };
 
 /*

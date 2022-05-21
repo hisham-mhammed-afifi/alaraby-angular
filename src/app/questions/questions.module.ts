@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { QuestionFormComponent } from './question-form/question-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RecomendedComponent } from './recomended/recomended.component';
+import { QuestionModalComponent } from './question-modal/question-modal.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { RecomendedComponent } from './recomended/recomended.component';
     QuestionCardComponent,
     QuestionFormComponent,
     RecomendedComponent,
+    QuestionModalComponent,
   ],
   imports: [CommonModule, SharedModule, ReactiveFormsModule],
   exports: [QuestionsComponent],

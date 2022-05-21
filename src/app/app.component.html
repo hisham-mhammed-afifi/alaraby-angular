@@ -1,4 +1,4 @@
-<div class="container mt-3">
+<div class="container mt-3" *ngIf="auth; else signup">
   <div class="row mb-3">
     <div class="col-12 text-center">
       <div class="card shadow-sm p-5">
@@ -9,10 +9,162 @@
   </div>
   <!-- ************************************************** -->
   <div class="row g-3">
-    <div class="col col-md-9">
+    <div class="col-12 col-md-3">
+      <div class="card shadow-sm p-2">
+        <button class="btn btn-sm btn-success" (click)="openModal($event)">
+          Add Question
+        </button>
+      </div>
+      <div class="card shadow-sm p-2">
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseOne"
+                aria-expanded="false"
+                aria-controls="flush-collapseOne"
+              >
+                Accordion Item #1
+              </button>
+            </h2>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingTwo">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseTwo"
+                aria-expanded="false"
+                aria-controls="flush-collapseTwo"
+              >
+                Accordion Item #2
+              </button>
+            </h2>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingThree">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseThree"
+                aria-expanded="false"
+                aria-controls="flush-collapseThree"
+              >
+                Accordion Item #3
+              </button>
+            </h2>
+          </div>
+        </div>
+      </div>
+      <div class="card shadow-sm p-2">
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseOne"
+                aria-expanded="false"
+                aria-controls="flush-collapseOne"
+              >
+                Accordion Item #1
+              </button>
+            </h2>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingTwo">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseTwo"
+                aria-expanded="false"
+                aria-controls="flush-collapseTwo"
+              >
+                Accordion Item #2
+              </button>
+            </h2>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingThree">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseThree"
+                aria-expanded="false"
+                aria-controls="flush-collapseThree"
+              >
+                Accordion Item #3
+              </button>
+            </h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-9">
       <div class="card shadow-sm p-3">
         <router-outlet></router-outlet>
       </div>
     </div>
   </div>
 </div>
+
+<!--  * * * * * * * * signup form * * * * * * * * * -->
+<ng-template #signup>
+  <div
+    class="card shadow-lg px-2 px-sm-3 py-3 py-sm-4 position-absolute top-50 start-50 translate-middle"
+    style="min-width: 319px"
+  >
+    <form [formGroup]="signupForm" (ngSubmit)="submit()">
+      <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input
+          formControlName="email"
+          type="email"
+          class="form-control"
+          id="email"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input
+          formControlName="password"
+          type="password"
+          class="form-control"
+          id="password"
+        />
+      </div>
+      <div class="row ms-2">
+        <div class="col mb-3 form-check">
+          <input
+            formControlName="roleId"
+            value="62868f37fac1ca1ac0b61d7a"
+            type="radio"
+            class="form-check-input"
+            id="user"
+          />
+          <label class="form-check-label" for="user">Admin</label>
+        </div>
+        <div class="col mb-3 form-check">
+          <input
+            formControlName="roleId"
+            value="62868f40fac1ca1ac0b61d7c"
+            type="radio"
+            class="form-check-input"
+            id="admin"
+          />
+          <label class="form-check-label" for="admin">User</label>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary px-5">Signup</button>
+    </form>
+  </div>
+</ng-template>

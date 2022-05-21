@@ -4,6 +4,12 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IQuestion } from '../models/iquestion';
 
+interface addedQ {
+  name: string;
+  factoryId: string;
+  groupId: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -16,5 +22,9 @@ export class QuestionService {
 
   allQuestions(): Observable<IQuestion[]> {
     return this.http.get<IQuestion[]>(this.getUrl());
+  }
+
+  addQuestion(question: addedQ): Observable<IQuestion> {
+    return this.http.post<IQuestion>(this.getUrl(), question);
   }
 }
