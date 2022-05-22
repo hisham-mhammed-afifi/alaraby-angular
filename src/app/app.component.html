@@ -10,6 +10,11 @@
   <!-- ************************************************** -->
   <div class="row g-3">
     <div class="col-12 col-md-3">
+      <div class="card shadow-sm p-2">
+        <button class="btn btn-sm btn-secondary" (click)="logout()">
+          - Logout
+        </button>
+      </div>
       <div class="card shadow-sm p-2" *ngIf="isAdmin()">
         <button class="btn btn-sm btn-success" (click)="openModal($event)">
           Add Question
@@ -119,7 +124,7 @@
 <!--  * * * * * * * * signup form * * * * * * * * * -->
 <ng-template #signup>
   <div
-    class="card shadow-lg px-2 px-sm-3 py-3 py-sm-4 position-absolute top-50 start-50 translate-middle"
+    class="card shadow-lg p-4 position-absolute top-50 start-50 translate-middle"
     style="min-width: 319px"
   >
     <form [formGroup]="signupForm" (ngSubmit)="submit()">
@@ -130,7 +135,11 @@
           type="email"
           class="form-control"
           id="email"
+          [ngClass]="{
+            'is-invalid': email.touched && email.dirty && email.errors
+          }"
         />
+        <app-validation [control]="email"></app-validation>
       </div>
       <div class="mb-3">
         <label for="password" class="form-label">Password</label>
@@ -139,8 +148,13 @@
           type="password"
           class="form-control"
           id="password"
+          [ngClass]="{
+            'is-invalid': password.touched && password.dirty && password.errors
+          }"
         />
+        <app-validation [control]="password"></app-validation>
       </div>
+      <p class="text-muted">This is just for testing both accounts</p>
       <div class="row ms-2">
         <div class="col mb-3 form-check">
           <input
@@ -164,7 +178,13 @@
         </div>
       </div>
 
-      <button type="submit" class="btn btn-primary px-5">Signup</button>
+      <button
+        [disabled]="signupForm.invalid"
+        type="submit"
+        class="btn btn-primary"
+      >
+        Signup
+      </button>
     </form>
   </div>
 </ng-template>

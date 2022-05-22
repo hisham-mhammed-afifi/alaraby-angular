@@ -1,0 +1,26 @@
+<ng-container *ngIf="control.touched && control.dirty">
+  <div
+    [ngClass]="{'text-danger': control.errors?.['required']}"
+    *ngIf="control.errors?.['required']"
+  >
+    *This field is required.
+  </div>
+  <div
+    [ngClass]="{'text-danger': control.errors?.['email']}"
+    *ngIf="control.errors?.['email']"
+  >
+    *Please provide a valid Email.
+  </div>
+  <div
+    [ngClass]="{'text-danger': control.errors?.['pattern']}"
+    *ngIf="control.errors?.['pattern']"
+  >
+    *Password at least 5 chars, UPPER & lower & nums.
+  </div>
+  <div
+    [ngClass]="{'text-danger': control.errors?.['minlength']}"
+    *ngIf="control.errors?.['minlength']"
+  >
+    *Enter at least 5 chars.
+  </div>
+</ng-container>

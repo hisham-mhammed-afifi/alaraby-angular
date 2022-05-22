@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AnswerService } from 'src/app/services/answer.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { QuestionService } from 'src/app/services/question.service';
@@ -12,10 +12,26 @@ import { QuestionService } from 'src/app/services/question.service';
 export class QuestionModalComponent implements OnInit, OnDestroy {
   isQuestion: boolean = true;
 
-  question = new FormControl('');
-  firstAnswer = new FormControl('');
-  secondAnswer = new FormControl('');
-  thirdAnswer = new FormControl('');
+  question = new FormControl('', [
+    Validators.required,
+    Validators.minLength(5),
+    Validators.maxLength(50),
+  ]);
+  firstAnswer = new FormControl('', [
+    Validators.required,
+    Validators.minLength(5),
+    Validators.maxLength(50),
+  ]);
+  secondAnswer = new FormControl('', [
+    Validators.required,
+    Validators.minLength(5),
+    Validators.maxLength(50),
+  ]);
+  thirdAnswer = new FormControl('', [
+    Validators.required,
+    Validators.minLength(5),
+    Validators.maxLength(50),
+  ]);
 
   questionForm = new FormGroup({
     question: this.question,

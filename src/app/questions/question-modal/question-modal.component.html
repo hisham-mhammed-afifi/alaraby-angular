@@ -7,7 +7,11 @@
         class="form-control"
         id="question"
         formControlName="question"
+        [ngClass]="{
+          'is-invalid': question.touched && question.dirty && question.errors
+        }"
       />
+      <app-validation [control]="question"></app-validation>
     </div>
     <ng-template #answers>
       <div class="mb-3">
@@ -17,7 +21,12 @@
           class="form-control"
           id="question"
           formControlName="firstAnswer"
+          [ngClass]="{
+            'is-invalid':
+              firstAnswer.touched && firstAnswer.dirty && firstAnswer.errors
+          }"
         />
+        <app-validation [control]="firstAnswer"></app-validation>
       </div>
       <div class="mb-3">
         <label for="question" class="form-label">Add second answer</label>
@@ -26,7 +35,12 @@
           class="form-control"
           id="question"
           formControlName="secondAnswer"
+          [ngClass]="{
+            'is-invalid':
+              secondAnswer.touched && secondAnswer.dirty && secondAnswer.errors
+          }"
         />
+        <app-validation [control]="secondAnswer"></app-validation>
       </div>
       <div class="mb-3">
         <label for="question" class="form-label">Add third answer</label>
@@ -35,7 +49,12 @@
           class="form-control"
           id="question"
           formControlName="thirdAnswer"
+          [ngClass]="{
+            'is-invalid':
+              thirdAnswer.touched && thirdAnswer.dirty && thirdAnswer.errors
+          }"
         />
+        <app-validation [control]="thirdAnswer"></app-validation>
       </div>
 
       <button
@@ -47,7 +66,13 @@
       </button>
     </ng-template>
 
-    <button type="submit" class="btn btn-primary">
+    <button
+      [disabled]="
+        (question.errors && isQuestion) || (!isQuestion && questionForm.invalid)
+      "
+      type="submit"
+      class="btn btn-primary"
+    >
       {{ isQuestion ? "Add Answers >> " : "Submit" }}
     </button>
   </form>

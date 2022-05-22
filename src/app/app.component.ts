@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalService } from './services/modal.service';
 import { UserService } from './services/user.service';
 
@@ -21,9 +21,12 @@ export class AppComponent {
 
   auth: boolean = !!localStorage.getItem('auth') || false;
 
-  email = new FormControl('');
-  password = new FormControl('');
-  roleId = new FormControl('');
+  email = new FormControl('', [Validators.required, Validators.email]);
+  password = new FormControl('', [
+    Validators.required,
+    Validators.pattern(/^(?=.*[0-9])(?=.*[a-z]).{5,50}$/),
+  ]);
+  roleId = new FormControl('', [Validators.required]);
 
   signupForm = new FormGroup({
     email: this.email,
@@ -52,5 +55,10 @@ export class AppComponent {
         localStorage.setItem('auth', JSON.stringify(data));
       },
     });
+  }
+
+  logout() {
+    localStorage.removeItem('auth');
+    this.auth = false;
   }
 }
